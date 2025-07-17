@@ -29,10 +29,6 @@ if uploaded_file is not None:
     model.fit(X_train, y_train)
     st.success("Model Trained Successfully!")
 
-    y_pred = model.predict(X_test)
-    r2 = r2_score(y_test, y_pred)
-    st.info(f"Model Accuracy (R² Score): {r2:.2f}")
-
     st.header("Step 4: Visualize Regression Line")
     fig2, ax2 = plt.subplots()
     ax2.scatter(X, y, color='blue', label='Actual Data')
@@ -47,4 +43,9 @@ if uploaded_file is not None:
     if st.button("Predict Salary"):
         prediction = model.predict([[experience]])
         st.success(f"Predicted Salary: ${prediction[0]:,.2f}")
-        
+
+
+    y_pred = model.predict(X_test)
+    r2 = r2_score(y_test, y_pred)
+    st.info(f"Model Accuracy (R² Score): {r2:.2f}")
+    
